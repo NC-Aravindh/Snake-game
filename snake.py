@@ -5,6 +5,7 @@ class Snake:
     def __init__(self):
         self.starting_positions = [(0, 0), (-20, 0), (-40, 0)]
         self.segments = []
+        #3 Turtles are set in a sequence to create a snake.
         for position in self.starting_positions:
             new_turtle = Turtle()
             new_turtle.shape("square")
@@ -15,6 +16,7 @@ class Snake:
         self.head = self.segments[0]
         self.tail = self.segments[-1]
 
+    #New turtle will be created and added the current tail's position and to the snake.
     def extend(self):
         new_segment = Turtle()
         new_segment.shape("square")
@@ -24,6 +26,8 @@ class Snake:
 
 
     def move_forward(self):
+        #Here the all the segments except the head , will move to its previous segments position.
+        #Head which is the 0th segment will move forward by 20 pixels.
         for segment_no in range(len(self.segments) - 1, 0, -1):
             new_x = self.segments[segment_no - 1].xcor()
             new_y = self.segments[segment_no - 1].ycor()
@@ -31,6 +35,7 @@ class Snake:
 
         self.segments[0].forward(20)
 
+    #For the below controls , the head of the snake will be turned and rest will follow.
     def move_up(self):
         if self.segments[0].heading() != 270:
             self.segments[0].setheading(90)
